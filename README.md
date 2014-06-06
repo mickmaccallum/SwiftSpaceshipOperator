@@ -10,28 +10,34 @@ http://en.wikipedia.org/wiki/Spaceship_operator
 ## Usage
 
 ```swift
-let less: Int = 6.0 <=> 17.0
-let greater: Int = 4.0 <=> 2.0
-let equal: Int = 9001.0 <=> 9001.0
+let less = 6.0 <=> 17.0
+let greater = 4.0 <=> 2.0
+let equal = 9001.0 <=> 9001.0
 
-println(less) // Outputs -1
-println(greater) // Outputs 1
-println(equal) // Outputs 0
+println(less.toRaw()) // Outputs -1
+println(greater.toRaw()) // Outputs 1
+println(equal.toRaw()) // Outputs 0
 ```
 
 ### Implementation
 
 ```swift
+enum SpaceshipValue: Int8 { // Explicitly typed to allow toRaw()
+    case less = -1
+    case greater = 1
+    case same = 0
+}
+
 operator infix <=> { associativity left precedence 140 }
 
-@infix func <=> (left: Double, right: Double) -> Int {
+@infix func <=> <T: Comparable> (left: T, right: T) -> SpaceshipValue {
 
     if left < right {
-        return -1
+        return .less
     } else if left > right {
-        return 1
+        return .greater
     } else {
-        return 0
+        return .same
     }
 }
 ```
