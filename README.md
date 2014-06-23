@@ -22,7 +22,11 @@ println(equal) // Outputs 0
 ### Implementation
 
 ```swift
-enum SpaceshipValue: Int8 { // Explicitly typed to allow toRaw()
+enum SpaceshipValue: Int8, Printable { // Explicitly typed to allow toRaw()
+    var description: String {
+        return "\(self.toRaw())"
+    }
+
     case less = -1
     case greater = 1
     case same = 0
