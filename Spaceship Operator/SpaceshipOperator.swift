@@ -11,19 +11,16 @@ enum SpaceshipValue: Int8, Printable { // Explicitly typed to allow toRaw()
         return "\(self.toRaw())"
     }
     
-    case less = -1
-    case greater = 1
-    case same = 0
+    case lhs = -1, rhs = 1, same = 0
 }
 
-operator infix <=> { associativity left precedence 140 }
+operator infix <=> { associativity none precedence 140 }
 
 @infix func <=> <T: Comparable> (left: T, right: T) -> SpaceshipValue {
-
     if left < right {
-        return .less
+        return .lhs
     } else if left > right {
-        return .greater
+        return .rhs
     } else {
         return .same
     }
