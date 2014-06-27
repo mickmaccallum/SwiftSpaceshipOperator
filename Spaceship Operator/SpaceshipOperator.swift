@@ -14,7 +14,7 @@ enum SpaceshipValue: Int8, Printable { // Explicitly typed to allow toRaw()
     case lhs = -1, rhs = 1, same = 0
 }
 
-operator infix <=> { associativity none precedence 140 }
+operator infix <=> { associativity none precedence 130 }
 
 @infix func <=> <T: Comparable> (left: T, right: T) -> SpaceshipValue {
     if left < right {
