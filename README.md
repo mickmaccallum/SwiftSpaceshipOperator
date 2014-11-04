@@ -22,24 +22,21 @@ println(equal) // Outputs 0
 ### Implementation
 
 ```swift
-enum SpaceshipValue: Int8, Printable { // Explicitly typed to allow toRaw()
+enum SpaceshipValue: Int8, Printable {
     var description: String {
-        return "\(self.toRaw())"
+        return "\(self.rawValue)"
     }
-
-    case less = -1
-    case greater = 1
-    case same = 0
+    
+    case lhs = -1, rhs = 1, same = 0
 }
 
-operator infix <=> { associativity left precedence 140 }
+infix operator <=> { associativity none precedence 130 }
 
-@infix func <=> <T: Comparable> (left: T, right: T) -> SpaceshipValue {
-
+func <=> <T: Comparable> (left: T, right: T) -> SpaceshipValue {
     if left < right {
-        return .less
+        return .lhs
     } else if left > right {
-        return .greater
+        return .rhs
     } else {
         return .same
     }

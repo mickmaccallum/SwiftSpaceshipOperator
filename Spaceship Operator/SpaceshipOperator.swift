@@ -6,17 +6,17 @@
 //  Copyright (c) 2014 Michael MacCallum. All rights reserved.
 //
 
-enum SpaceshipValue: Int8, Printable { // Explicitly typed to allow toRaw()
+enum SpaceshipValue: Int8, Printable {
     var description: String {
-        return "\(self.toRaw())"
+        return "\(self.rawValue)"
     }
     
     case lhs = -1, rhs = 1, same = 0
 }
 
-operator infix <=> { associativity none precedence 130 }
+infix operator <=> { associativity none precedence 130 }
 
-@infix func <=> <T: Comparable> (left: T, right: T) -> SpaceshipValue {
+func <=> <T: Comparable> (left: T, right: T) -> SpaceshipValue {
     if left < right {
         return .lhs
     } else if left > right {
