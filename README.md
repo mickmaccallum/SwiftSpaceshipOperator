@@ -1,11 +1,10 @@
 Spaceship Operator for Swift
 ============================
 
-The spaceship operator (more info in link) is an operator from Ruby and several other languages that looks like... well... a spaceship! ( <=> ).
+The [spaceship operator](http://en.wikipedia.org/wiki/Spaceship_operator) is an operator from Ruby and several other languages that looks like... well... a spaceship! ( <=> ).
 
 It returns 1 if the left operand is greater of the two, -1 if the left operand is less, and 0 if the two numbers have the same value.
 
-http://en.wikipedia.org/wiki/Spaceship_operator
 
 ## Usage
 
